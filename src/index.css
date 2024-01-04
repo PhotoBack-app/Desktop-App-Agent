@@ -1,0 +1,12 @@
+html {
+  height: 100%;
+  background-image: linear-gradient(#7f3cd3,#F16476,#FDC299);
+  color: #fff;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: auto;
+  max-width: 38rem;
+  padding: 2rem;
+}
