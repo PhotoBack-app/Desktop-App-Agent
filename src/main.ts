@@ -1,21 +1,25 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import Bonjour from "bonjour-service";
 import { setupServer } from "./server/server";
-
-const instance = new Bonjour();
+import mdns from "mdns";
+import os from "node:os";
 
 let closeServer: (() => void) | undefined;
+
+// TODO: generate and store a real uuid on startup
+const uuid = "12345678-4321-1234-1234-123456789012";
+
+const hostname = os.hostname().replace(".local", "");
+const serverName = `${uuid}*PhotoBackApp on ${hostname}`;
 
 setupServer().then((result) => {
   if (result.status === "success") {
     const { port } = result;
-
-    instance.publish({
-      name: "PhotoBackApp Desktop Server",
-      type: "photobackapp",
-      port: port,
+    console.log("Publishing bonjour service");
+    const ad = mdns.createAdvertisement(mdns.tcp("photobackapp"), port, {
+      name: serverName,
     });
+    ad.start();
   }
 });
 
@@ -24,7 +28,6 @@ if (require("electron-squirrel-startup")) {
   if (closeServer) {
     closeServer();
   }
-  instance.destroy();
   app.quit();
 }
 
@@ -64,7 +67,6 @@ app.on("window-all-closed", () => {
     if (closeServer) {
       closeServer();
     }
-    instance.destroy();
     app.quit();
   }
 });
@@ -81,7 +83,6 @@ app.on("before-quit", () => {
   if (closeServer) {
     closeServer();
   }
-  instance.destroy();
 });
 
 // In this file you can include the rest of your app's specific main process

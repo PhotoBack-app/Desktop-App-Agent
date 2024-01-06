@@ -3,9 +3,7 @@ import http from "http";
 
 const app = express();
 
-const POSSIBLE_PORTS: number[] = [
-  8081, 3000, 8080, 8181, /**/ 5891, 5892, 5893, 5894, 5895, 5896,
-] as const;
+const POSSIBLE_PORTS: number[] = [5891, 5892, 5893, 5894, 5895, 5896] as const;
 
 type Result = { status: "success"; port: number } | { status: "busy" };
 
