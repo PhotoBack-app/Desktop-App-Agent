@@ -3,6 +3,11 @@
 > [!NOTE]
 > This is a early "works on my computer" stage and thus have only been tested on Mac OS Sonoma on my sweet 2021 16" MBP M1.
 
+## State:
+
+Current state as of 2024-01-13 at 01.52.00
+![Screenshot of the current state as of 2024-01-13 at 01.52.00](src/assets/Screenshot_2024-01-13_at_01.52.00.png)
+
 ## Desktop App idea:
 
 - Shows upload statuses(dashboard-like content)
@@ -29,4 +34,4 @@ Not MVP-complete
 > Install `yarn` and `nodejs` before proceeding
 
 - `yarn`
-- `npm run start # or dev`
+- `yarn start # or dev`

@@ -1,17 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
     "allowJs": true,
-    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
-    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
-    "noImplicitAny": true,
-    "sourceMap": true,
+    "alwaysStrict": true, // electron-trpc
     "baseUrl": ".",
-    "outDir": "dist",
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "forceConsistentCasingInFileNames": true, // electron-trpc
+    "jsx": "react",
+    "lib": ["dom", "esnext"], // electron-trpc
+    "module": "commonjs",
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "noEmit": true, // electron-trpc
+    "noFallthroughCasesInSwitch": true, // electron-trpc
+    "noUnusedLocals": true, // electron-trpc
+    "noUnusedParameters": true, // electron-trpc
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true, // electron-trpc
+    "target": "ESNext",
+    "useDefineForClassFields": true // electron-trpc
   },
   "include": ["src"]
 }

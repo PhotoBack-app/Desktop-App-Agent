@@ -1,8 +1,11 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { setupServer } from "./server/server";
+import { createIPCHandler } from "electron-trpc/main";
 import mdns from "mdns";
 import os from "node:os";
+
+import { setupServer } from "./server/server";
+import { router } from "./electron/api";
 
 let closeServer: (() => void) | undefined;
 
@@ -41,6 +44,8 @@ const createWindow = () => {
     },
   });
 
+  createIPCHandler({ router, windows: [mainWindow] });
+
   // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
@@ -49,6 +54,7 @@ const createWindow = () => {
       path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
     );
   }
+  mainWindow.reload(); // Makes trpcs S<->C work
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
